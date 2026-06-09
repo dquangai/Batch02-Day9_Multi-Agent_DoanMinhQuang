@@ -17,7 +17,7 @@ from typing import Any
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent
 
-from common.llm import get_llm
+from common.llm import RESPONSE_LANGUAGE_INSTRUCTION, get_llm
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,9 @@ Always use the `delegate_to_legal_agent` tool for any substantive legal question
 Do not attempt to answer complex legal questions from your own knowledge alone.
 
 Be professional, clear, and make the specialist response accessible to the user.
-"""
+
+{lang}
+""".format(lang=RESPONSE_LANGUAGE_INSTRUCTION)
 
 
 def build_graph(trace_id: str, context_id: str, depth: int) -> Any:

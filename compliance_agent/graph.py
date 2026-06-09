@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from langgraph.prebuilt import create_react_agent
 
-from common.llm import get_llm
+from common.llm import RESPONSE_LANGUAGE_INSTRUCTION, get_llm
 
 COMPLIANCE_SYSTEM_PROMPT = """You are a senior regulatory compliance officer and corporate attorney
 with deep expertise in:
@@ -34,7 +34,9 @@ When answering, be precise about:
 
 Always note that your response is for educational purposes and the user
 should consult a licensed attorney for specific compliance advice.
-"""
+
+{lang}
+""".format(lang=RESPONSE_LANGUAGE_INSTRUCTION)
 
 
 def create_graph():
